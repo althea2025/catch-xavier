@@ -1,0 +1,41 @@
+<!doctype html>
+<html lang="zh-Hant"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover"><title>抓到澤維爾！ / Catch Xavier!</title><link rel="stylesheet" href="style.css?v=20261002-holdsprint26"></head>
+<body>
+<main id="app">
+  <header class="topbar"><a class="brand" href="./">CATCH XAVIER <span>抓到澤維爾！</span></a><div class="edition">書房午後・一場小小的偷襲</div><button id="sound" class="quiet" aria-label="切換音效">聲音・關</button></header>
+  <section id="title" class="title-screen">
+    <div class="title-art"></div><div class="title-shade"></div><div class="title-dust"></div><canvas id="title-actors" width="760" height="580" aria-hidden="true"></canvas>
+    <div class="title-copy"><p class="eyebrow">一個擁抱的距離</p><h1>抓到<br>澤維爾！<span>Catch Xavier!</span></h1><i class="flourish"></i><p class="intro">他正在看書，妳正打著壞主意。<br>悄悄繞到背後，把最後兩步留給心跳。</p><button id="start" class="primary" disabled>正在準備書房……</button><p class="small">單人潛行戀愛・只差兩步，就能抱到他</p></div>
+    <div class="title-note"><span>安潔拉的小計畫</span>「這次，一定抱得到。」</div>
+  </section>
+  <section id="play" hidden>
+    <div class="game-header"><div><span class="eyebrow">私人書房</span><h2>別讓他先回頭。</h2></div><div class="objective"><i></i><span id="objective">繞到背後，按 E 抱住他</span></div><button id="pause" class="quiet">暫停 II</button></div>
+    <div class="game-layout"><div class="stage-wrap"><canvas id="game" width="1120" height="720" tabindex="0" aria-label="潛行遊戲；WASD 移動，C 躡手躡腳，Shift 快跑，Q 魔法，E 擁抱"></canvas><div id="toast" role="status"></div><div class="map-caption">書房 <span>午後書房</span></div></div>
+      <aside class="sidebar"><div class="character-card"><img class="portrait xavier-hud" src="assets/ui/xavier-hud-default.7e470fad5b.webp" alt="澤維爾・DEFAULT" width="58" height="58" draggable="false"><p class="eyebrow">澤維爾</p><h3 id="reaction">……</h3><p id="behavior">正在閱讀</p></div><div class="mission"><span class="eyebrow">妳的小計畫</span><p id="hint">先找掩護，觀察他轉頭的時機。</p><div class="divider"></div><div class="mode-line"><span id="floor">木地板</span><strong id="mode">普通移動</strong></div><p class="micro">地毯會吸收腳步聲；石地會放大聲響。</p></div><button id="magic" class="magic-button"><span>✧ 魔法干擾 <kbd>Q</kbd></span><small id="cooldown">讓茶具、書本或紙張發出聲音</small></button><p class="micro">點選地圖上的 ✧ 物件，再施法。<br>也可按 Tab 切換附近物件。</p><div class="angela-card"><div class="portrait angela"></div><div><b>安潔拉</b><p>「只是借一個擁抱。」</p></div></div></aside>
+    </div>
+    <footer class="controls"><span><kbd>W A S D</kbd> / <kbd>↑ ↓ ← →</kbd> 移動</span><span><kbd>C</kbd> 切換躡手躡腳</span><span><kbd>Shift</kbd> 快跑</span><span><kbd>E</kbd> 擁抱</span><span><kbd>Q</kbd> 干擾</span><span><kbd>Esc</kbd> 暫停</span><span>點地板也能移動</span></footer>
+    <div class="touch-controls"><div class="dpad"><button data-move="up" aria-label="向上移動" draggable="false"><svg viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="M12 20V4M6 10l6-6 6 6" transform="rotate(0 12 12)"/></svg></button><button data-move="left" aria-label="向左移動" draggable="false"><svg viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="M12 20V4M6 10l6-6 6 6" transform="rotate(-90 12 12)"/></svg></button><button data-move="down" aria-label="向下移動" draggable="false"><svg viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="M12 20V4M6 10l6-6 6 6" transform="rotate(180 12 12)"/></svg></button><button data-move="right" aria-label="向右移動" draggable="false"><svg viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="M12 20V4M6 10l6-6 6 6" transform="rotate(90 12 12)"/></svg></button></div><button id="sneak">躡手躡腳</button><button id="sprint">快跑</button><button id="hug">抱住</button></div>
+  </section>
+  <section id="difficulty-dialog" class="overlay" role="dialog" aria-modal="true" aria-label="選擇難度" hidden><div class="modal difficulty-modal"><p class="eyebrow">這次，要多靠近一點？</p><h2>選擇這場偷襲</h2><div id="difficulty-options" role="radiogroup" aria-label="難度"></div><p id="difficulty-lock" class="micro"></p><button id="difficulty-confirm" class="primary">選好了，悄悄出發 →</button><button id="difficulty-cancel" class="quiet">返回</button></div></section>
+  <section id="tutorial" class="overlay" role="dialog" aria-modal="true" aria-label="操作教學" hidden><div class="modal"><p class="eyebrow">偷偷靠近的三個訣竅</p><h2>目標：偷一個擁抱。</h2><div class="lesson"><b>01</b><p><strong>藏在家具後面</strong>書架、屏風和家具會擋住視線。淡金色扇形是他的視線方向。</p></div><div class="lesson"><b>02</b><p><strong>把腳步放輕</strong>C 切換躡手躡腳。Shift 快跑很吵；地毯最安靜。也可以點地板移動。Q 讓附近物件發聲，引開他的注意。</p></div><div class="lesson"><b>03</b><p><strong>最後兩步，要果斷</strong>從背後靠近，出現「E 抱住他」就按 E。他若停步或說「……？」要小心，即使背後也會被察覺。</p></div><button id="begin" class="primary">知道了，悄悄出發 →</button><p class="micro">沒有倒數壓力。失敗可以立即再試一次。</p></div></section>
+  <section id="paused" class="overlay" role="dialog" aria-modal="true" aria-label="遊戲暫停" hidden><div class="modal compact"><p class="eyebrow">暫停・午後稍歇</p><h2>讓心跳休息一下。</h2><p>遊戲已暫停。</p><p id="pause-difficulty"></p><button id="resume" class="primary">繼續靠近 →</button><button id="restart" class="quiet">重新開始</button><button id="change-difficulty" class="quiet">另選難度並重新開始</button></div></section>
+  <section id="ending" class="overlay ending-overlay" role="dialog" aria-modal="true" aria-label="結局" hidden><div class="ending-panel"><p id="ending-label" class="eyebrow"></p><h2 id="ending-title"></h2><div class="ending-illustration"><canvas id="ending-canvas" width="680" height="300" aria-label="角色結局演出"></canvas></div><div id="ending-portraits"><div class="portrait angela"></div><span id="ending-symbol">♡</span><div class="portrait xavier"></div></div><div id="dialogue" aria-live="polite"></div><p id="result-note"></p><div class="ending-actions"><button id="retry" class="primary">再試一次 ↻</button><button id="skip" class="quiet">跳過演出</button></div><dl id="result-stats" hidden></dl><p id="unlock-note" class="micro"></p><button id="result-difficulty" class="quiet" hidden>另選難度再挑戰</button><p class="micro" id="ending-meta"></p></div></section>
+  <div id="fatal" class="overlay" hidden><div class="modal"><h2>遊戲載入失敗</h2><p>部分遊戲資源無法載入，請確認連線後重新載入。</p><button onclick="location.reload()" class="primary">重新載入</button></div></div>
+</main><script>
+(()=>{
+ const start=document.getElementById('start'),fatal=document.getElementById('fatal');let failed=false,ready=false,timer;
+ const fail=(error)=>{
+  if(failed)return;failed=true;clearTimeout(timer);start.disabled=true;start.textContent='書房載入失敗';
+  fatal.hidden=false;fatal.querySelector('h2').textContent='書房載入失敗';
+  fatal.querySelector('p').textContent='部分遊戲資源無法載入，請確認連線後重新載入。';
+  console.error('[Catch Xavier] Initialization/runtime failure',error);
+ };
+ function arm(){if(failed||ready)return;clearTimeout(timer);timer=setTimeout(()=>fail(new Error('Initialization stalled: no asset progress for 120 seconds. Check Network for pending requests.')),120000);}
+ window.addEventListener('game-load-progress',arm);arm();
+ window.addEventListener('error',event=>{if(event.error)fail(event.error);else if(event.target?.tagName==='SCRIPT')fail(new Error('Script failed: '+event.target.src));},true);
+ window.addEventListener('unhandledrejection',event=>fail(event.reason));
+ import('./src/main.js?v=20261002-holdsprint26').then(module=>module.ready).then(()=>{
+  if(failed)return;ready=true;clearTimeout(timer);start.disabled=false;start.textContent='開始遊戲';
+ }).catch(fail);
+})();
+</script></body></html>
