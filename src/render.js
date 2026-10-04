@@ -1,7 +1,7 @@
-import { furniture, stone, props, distance, visible } from './world.js?v=20261005-passages28';
-import { roomRugs } from './room-layout.js?v=20261005-passages28';
-import { facing, poseFor, frameFor, screenToWorld, depthKey, endingStage } from './presentation.js?v=20261005-passages28';
-import { Locomotion } from './locomotion.js?v=20261005-passages28';
+import { furniture, stone, props, distance, visible } from './world.js?v=20261005-screenpass29';
+import { roomRugs } from './room-layout.js?v=20261005-screenpass29';
+import { facing, poseFor, frameFor, screenToWorld, depthKey, endingStage } from './presentation.js?v=20261005-screenpass29';
+import { Locomotion } from './locomotion.js?v=20261005-screenpass29';
 const TAU=Math.PI*2;
 const clamp=(v,a,b)=>Math.max(a,Math.min(b,v));
 const ease=v=>1-Math.pow(1-clamp(v,0,1),3);

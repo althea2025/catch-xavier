@@ -1,4 +1,4 @@
-import {downloadBytes} from './download.js?v=20261005-passages28';
+import {downloadBytes} from './download.js?v=20261005-screenpass29';
 // Original locally rendered piano BGM + independent gameplay SFX. No noise ambience.
 // Presentation mixing never changes sound detection.
 export class Audio {

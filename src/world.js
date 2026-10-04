@@ -6,7 +6,7 @@ export const furniture = [
   {x:468,y:170,w:62,h:186,passageInsetTop:24,kind:'shelf'},
   {x:792,y:182,w:214,h:78,kind:'desk',label:'書桌'},
   {x:535,y:484,w:174,h:66,kind:'sofa',label:'沙發'},
-  {x:839,y:413,w:30,h:150,passageInsetTop:24,kind:'screen',label:'屏風'},
+  {x:839,y:413,w:30,h:150,passageInsetTop:60,kind:'screen',label:'屏風'},
   {x:392,y:487,w:40,h:40,kind:'pillar'},
   {x:699,y:302,w:40,h:40,kind:'pillar'},
   {x:982,y:425,w:70,h:67,kind:'table',label:'茶桌'},

@@ -34,7 +34,7 @@
  window.addEventListener('game-load-progress',arm);arm();
  window.addEventListener('error',event=>{if(event.error)fail(event.error);else if(event.target?.tagName==='SCRIPT')fail(new Error('Script failed: '+event.target.src));},true);
  window.addEventListener('unhandledrejection',event=>fail(event.reason));
- import('./src/main.js?v=20261005-passages28').then(module=>module.ready).then(()=>{
+ import('./src/main.js?v=20261005-screenpass29').then(module=>module.ready).then(()=>{
   if(failed)return;ready=true;clearTimeout(timer);start.disabled=false;start.textContent='開始遊戲';
  }).catch(fail);
 })();
