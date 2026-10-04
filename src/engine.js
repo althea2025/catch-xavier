@@ -1,5 +1,5 @@
-import {difficultyProfile} from './difficulty.js?v=20261002-holdsprint26';
-import {WORLD,blocked,furniture,inside,segmentRect,props,stations,distance,angleDiff,move,visible,surface,route} from './world.js?v=20261002-holdsprint26';
+import {difficultyProfile} from './difficulty.js?v=20261005-passages28';
+import {WORLD,blocked,furniture,inside,segmentRect,props,stations,distance,angleDiff,move,visible,surface,route} from './world.js?v=20261005-passages28';
 export class Game {
   constructor(random=Math.random,difficulty='CANON'){this.random=random;this.reset(difficulty);}
   reset(difficulty=this.difficulty?.id||'CANON'){

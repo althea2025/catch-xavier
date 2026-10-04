@@ -2,11 +2,11 @@ export const WORLD = { width:1120, height:720, bounds:{x:42,y:70,w:1036,h:602}, 
 export const furniture = [
   {x:70,y:76,w:330,h:44,kind:'shelf',label:'藏書'},
   {x:595,y:76,w:200,h:44,kind:'shelf'},
-  {x:250,y:208,w:60,h:185,kind:'shelf',label:'書架'},
-  {x:468,y:170,w:62,h:186,kind:'shelf'},
+  {x:250,y:208,w:60,h:185,passageInsetTop:24,kind:'shelf',label:'書架'},
+  {x:468,y:170,w:62,h:186,passageInsetTop:24,kind:'shelf'},
   {x:792,y:182,w:214,h:78,kind:'desk',label:'書桌'},
   {x:535,y:484,w:174,h:66,kind:'sofa',label:'沙發'},
-  {x:839,y:413,w:30,h:150,kind:'screen',label:'屏風'},
+  {x:839,y:413,w:30,h:150,passageInsetTop:24,kind:'screen',label:'屏風'},
   {x:392,y:487,w:40,h:40,kind:'pillar'},
   {x:699,y:302,w:40,h:40,kind:'pillar'},
   {x:982,y:425,w:70,h:67,kind:'table',label:'茶桌'},
@@ -31,10 +31,16 @@ export const stations = [
 export const distance = (a,b) => Math.hypot(a.x-b.x,a.y-b.y);
 export const angleDiff = (a,b) => Math.atan2(Math.sin(a-b),Math.cos(a-b));
 export function inside(p,r) { return p.x>=r.x && p.x<=r.x+r.w && p.y>=r.y && p.y<=r.y+r.h; }
+// The three tall furnishings project over open floor at their north ends.
+// Movement uses their ground footprint; artwork and sight occlusion stay unchanged.
+export function movementFootprint(o) {
+  const inset=o.passageInsetTop||0;
+  return {...o,y:o.y+inset,h:o.h-inset};
+}
 export function blocked(x,y,r=15) {
   const b=WORLD.bounds;
   if(x-r<b.x||x+r>b.x+b.w||y-r<b.y||y+r>b.y+b.h) return true;
-  return furniture.some(o=>Math.hypot(x-Math.max(o.x,Math.min(x,o.x+o.w)),y-Math.max(o.y,Math.min(y,o.y+o.h)))<r);
+  return furniture.map(movementFootprint).some(o=>Math.hypot(x-Math.max(o.x,Math.min(x,o.x+o.w)),y-Math.max(o.y,Math.min(y,o.y+o.h)))<r);
 }
 export function move(body,dx,dy,r=15) {
   const n=Math.max(1,Math.ceil(Math.hypot(dx,dy)/6));
@@ -56,7 +62,7 @@ export function route(from,to) {
   const point=id=>({x:(id%cols)*size+size/2,y:Math.floor(id/cols)*size+size/2});
   const nearest=p=>{
     let best=-1,score=Infinity;
-    for(let y=0;y<rows;y++)for(let x=0;x<cols;x++){const id=y*cols+x,q=point(id),d=distance(p,q);if(d<score&&!blocked(q.x,q.y,18)&&visible(p,q)){best=id;score=d;}}
+    for(let y=0;y<rows;y++)for(let x=0;x<cols;x++){const id=y*cols+x,q=point(id),d=distance(p,q);if(d<score&&!blocked(q.x,q.y,18)&&!furniture.some(o=>segmentRect(p,q,movementFootprint(o)))){best=id;score=d;}}
     return best;
   };
   const start=nearest(from),end=nearest(to);if(start<0||end<0)return [];

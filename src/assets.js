@@ -1,6 +1,6 @@
-import {loadWithConcurrency} from './download.js?v=20261002-holdsprint26';
-import {loadImage,assetURL} from './asset-loader.js?v=20261002-holdsprint26';
-import {assertCanonTransform} from './character-canon.js?v=20261002-holdsprint26';
+import {loadWithConcurrency} from './download.js?v=20261005-passages28';
+import {loadImage,assetURL} from './asset-loader.js?v=20261005-passages28';
+import {assertCanonTransform} from './character-canon.js?v=20261005-passages28';
 export const ASSET_FILES={
   xavierTitle:'assets/generated/polish/xavier-title-composed.3f00b6e575.svg',
   angelaWalk:'assets/generated/polish/angela-walk.7cc0c8c6f8.webp',

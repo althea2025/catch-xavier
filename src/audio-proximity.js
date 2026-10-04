@@ -1,4 +1,4 @@
-import {distance,visible,WORLD} from './world.js?v=20261002-holdsprint26';
+import {distance,visible,WORLD} from './world.js?v=20261005-passages28';
 // Presentation only: never reuse visual suspicion as a heartbeat trigger.
 export function heartbeatProximity(game){
   if(game.phase!=='play'||!game.rear||!visible(game.xavier,game.player))return 0;

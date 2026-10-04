@@ -1,4 +1,4 @@
-import {downloadBytes} from './download.js?v=20261002-holdsprint26';
+import {downloadBytes} from './download.js?v=20261005-passages28';
 // Resolve from the module, never from the domain root or the document URL.
 export const assetURL=(path,base=import.meta.url)=>new URL('../'+path,base);
 export async function loadImage(url,{timeout=45000,attempts=2,imageFactory=()=>new Image(),fetchImpl,onProgress=()=>{}}={}){
